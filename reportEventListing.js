@@ -4,8 +4,7 @@ function readEventListing(stmt) {
     query: `
       SELECT DISTINCT 
         order_item_name AS "Trip Name", 
-        product_id AS "ID", 
-        cc_start_date AS "Date" 
+        product_id AS "ID"
       FROM wp_order_product_customer_lookup 
       WHERE (memberbot_order_category LIKE "%indoor%" 
         OR memberbot_order_category LIKE "%wednesday%" 
