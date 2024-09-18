@@ -1,14 +1,4 @@
-function readBadgesData() {
-  var conn = Jdbc.getConnection(url, username, password);
-  var stmt = conn.createStatement();
 
-  readBadgesNeeded(stmt);
-  readBandsNeeded(stmt);
-  readBadgesGiven(stmt);
-
-  stmt.close();
-  conn.close();
-}
 
 function readBadgesNeeded(stmt) {
   makeReport(stmt, {

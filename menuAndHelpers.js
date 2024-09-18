@@ -51,15 +51,15 @@ function onOpen() {
       .addItem('Refresh All', 'readData')
       .addSeparator()
       .addItem('Refresh Output', 'refreshOutput')
-      .addItem('Refresh Stats', 'refreshStats')
+      //.addItem('Refresh Stats', 'refreshStats')
       .addItem('Refresh Lead Training', 'refreshLeadBelayTraining')
       .addItem('Refresh TR Belay Training', 'refreshTopRopeTraining')
       .addItem('Refresh Event Listings', 'refreshEventListing')
-      .addItem('Refresh Roles', 'refreshRoles')
-      .addItem('Refresh Volunteer Intent', 'refreshVolunteerIntent')
+      //.addItem('Refresh Roles', 'refreshRoles')
+      //.addItem('Refresh Volunteer Intent', 'refreshVolunteerIntent')
       .addSeparator()
       .addItem('Refresh Volunteering', 'refreshVolunteering')
-      .addItem('Refresh Badges', 'refreshBadges')
+      //.addItem('Refresh Badges', 'refreshBadges')
       .addToUi();
 
         ui.createMenu('Badges & bands')
@@ -158,4 +158,27 @@ function refreshVolunteering() {
 
 function refreshBadges() {
   readBadgesData();
+}
+
+function readVolunteerData() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+
+  readVolunteers(stmt);
+  readNonVolunteers(stmt);
+
+  stmt.close();
+  conn.close();
+}
+
+function readBadgesData() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+
+  readBadgesNeeded(stmt);
+  readBandsNeeded(stmt);
+  readBadgesGiven(stmt);
+
+  stmt.close();
+  conn.close();
 }

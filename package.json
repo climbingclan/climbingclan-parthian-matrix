@@ -1,7 +1,7 @@
 {
-  "name": "qms-audit-project",
+  "name": "climbingclan-parthian-matrix",
   "version": "1.0.0",
-  "description": "A Google Apps Script to document qms layout and functionality.",
+  "description": "A Google Apps Script to help with check in and stuff.",
   "scripts": {
     "push": "clasp push --auth ~/.clasprc.timmydobson.json",
     "pull": "clasp pull --auth ~/.clasprc.timmydobson.json",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdobson/qms-audit-project.git"
+    "url": "git+https://github.com/climbingclan/climbingclan-parthian-matrix"
   },
   "author": "Tim Dobson",
   "license": "All Rights Reserved",
