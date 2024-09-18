@@ -165,7 +165,6 @@ function readVolunteerData() {
   var stmt = conn.createStatement();
 
   readVolunteers(stmt);
-  readNonVolunteers(stmt);
 
   stmt.close();
   conn.close();
