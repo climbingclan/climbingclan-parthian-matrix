@@ -4,12 +4,16 @@ function readData() {
 
   const reports = [
     readOutput,
-    readStats,
+
     readLeadBelayTraining,
     readTopRopeTraining,
     readEventListing,
+    readStats,
     readRoles,
-    readVolunteerIntent
+    readVolunteerIntent,
+    readBadgesNeeded,
+  readBandsNeeded,
+  readBadgesGiven,
     // volunteerData is not updated as per your request
   ];
 
