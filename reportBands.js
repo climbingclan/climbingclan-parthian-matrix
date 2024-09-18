@@ -27,4 +27,12 @@ function readBandsNeeded(stmt) {
         ],
         title: "People who need bands"
     });
+
+    // Add checkboxes to column A from row 2 downwards
+    let sheet = SpreadsheetApp.getActive().getSheetByName("Bands");
+    let lastRow = sheet.getLastRow();
+    if (lastRow > 1) {
+        let range = sheet.getRange(2, 1, lastRow - 1, 1);
+        range.insertCheckboxes();
+    }
 }

@@ -27,6 +27,14 @@ function readBadgesNeeded(stmt) {
     ],
     title: "People who need badges"
   });
+
+  // Add checkboxes to column A from row 2 downwards
+  let sheet = SpreadsheetApp.getActive().getSheetByName("Badges");
+  let lastRow = sheet.getLastRow();
+  if (lastRow > 1) {
+    let range = sheet.getRange(2, 1, lastRow - 1, 1);
+    range.insertCheckboxes();
+  }
 }
 
 
