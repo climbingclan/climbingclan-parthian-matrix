@@ -1,18 +1,20 @@
-function runWednesdayMatrix() {
+function readData() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
 
-  runOutputTab();
-  volunteerData();
-  badgesData();
-  leadBelayTrainingData();
-  topRopeTrainingData();
-  //runVolunteeringTab();
-  runRolesTab();
-  //runTestTab();
-  statsData();
+  const reports = [
+    readOutput,
+    readStats,
+    readLeadBelayTraining,
+    readTopRopeTraining,
+    readEventListing,
+    // volunteerData is not updated as per your request
+  ];
 
-  readEvents();
-//  onOpen();
+  reports.forEach(report => report(stmt));
 
+  stmt.close();
+  conn.close();
 }
 
 

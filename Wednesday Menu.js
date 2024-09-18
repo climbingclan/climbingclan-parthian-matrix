@@ -48,23 +48,17 @@ function onOpen() {
       .addToUi();   
 
   ui.createMenu('Refresh Matrix')
-      .addItem('Refresh All', 'runWednesdayMatrix')
+      .addItem('Refresh All', 'readData')
       .addSeparator()
-      .addItem('Refresh Output', 'runOutputTab')
+      .addItem('Refresh Output', 'refreshOutput')
+      .addItem('Refresh Stats', 'refreshStats')
+      .addItem('Refresh Lead Training', 'refreshLeadBelayTraining')
+      .addItem('Refresh TR Belay Training', 'refreshTopRopeTraining')
+      .addItem('Refresh Event Listings', 'refreshEventListing')
       .addSeparator()
       .addItem('Refresh Volunteering', 'volunteerData')
       .addItem('Refresh Roles', 'runRolesTab')
-      //.addItem('Refresh Volunteering-old', 'runVolunteeringTab')
-           .addSeparator()
-      .addItem('Refresh Lead Training', 'leadBelayTrainingData')
-      .addItem('Refresh TR Belay Training', 'topRopeTrainingData')
-
-                 .addSeparator()
-
-      .addItem('Refresh Event Listings Dashboard', 'readEvents')
       .addItem('Refresh Badges', 'badgesData')
-
-
       .addToUi();   
 
         ui.createMenu('Badges & bands')
