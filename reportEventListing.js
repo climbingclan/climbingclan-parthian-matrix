@@ -1,4 +1,11 @@
 function readEventListing(stmt) {
+  const useNewConnection = !stmt;
+  
+  if (useNewConnection) {
+    var conn = Jdbc.getConnection(url, username, password);
+    stmt = conn.createStatement();
+  }
+
   makeReport(stmt, {
     sheetName: "Event List",
     query: `
@@ -15,4 +22,13 @@ function readEventListing(stmt) {
     `,
     formatting: []
   });
+
+  if (useNewConnection) {
+    stmt.close();
+    conn.close();
+  }
+}
+
+function eventListing() {
+  readEventListing();
 }
