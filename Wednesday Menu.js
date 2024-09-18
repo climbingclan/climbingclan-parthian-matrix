@@ -94,3 +94,51 @@ function onOpen() {
       .addToUi();  
 
 }
+
+function refreshOutput() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readOutput(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshStats() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readStats(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshLeadBelayTraining() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readLeadBelayTraining(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshTopRopeTraining() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readTopRopeTraining(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshEventListing() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readEventListing(stmt);
+  stmt.close();
+  conn.close();
+}
+
+function refreshVolunteerIntent() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readVolunteerIntent(stmt);
+  stmt.close();
+  conn.close();
+}
