@@ -1,13 +1,32 @@
-var server = '18.168.242.164';
-var port = 3306;
-var dbName = 'bitnami_wordpress';
-var username = 'gsheets';
-var password = 'eyai4yohF4uX8eeP7phoob';
-var url = 'jdbc:mysql://'+server+':'+port+'/'+dbName;
-var cc_location = "Parthian Climbing Manchester";
-var apidomain="climbingclan.com"
-var apiusername="ck_3f8cd172e7aed36533d434e04e8c0b2affe19075"
-var apipassword="cs_817f3cd22ae28bc33fa716a6fdfd707188c0409b"
+const server = '18.168.242.164';
+const port = 3306;
+const dbName = 'bitnami_wordpress';
+const username = 'gsheets';
+const password = 'eyai4yohF4uX8eeP7phoob';
+const url = 'jdbc:mysql://'+server+':'+port+'/'+dbName;
+const cc_location = "Parthian Climbing Manchester";
+const apidomain="climbingclan.com";
+const apiusername="ck_3f8cd172e7aed36533d434e04e8c0b2affe19075";
+const apipassword="cs_817f3cd22ae28bc33fa716a6fdfd707188c0409b";
+
+function setupCell(name, range) {
+  var spreadsheet = SpreadsheetApp.getActive();
+  let sheet = spreadsheet.getSheetByName(name);
+  let cellValue = sheet.getRange(range).getValue();
+  if (isNaN(cellValue) || cellValue === "") {
+    // Rerun eventListing
+    readEventListing();
+
+    // Try again
+    cellValue = sheet.getRange(range).getValue();
+
+    if (isNaN(cellValue) || cellValue === "") {
+      throw new Error("Invalid event selected - please try again");
+    }
+  }
+
+  return cellValue;
+}
 
 const cell = setupCell("Dashboard", "B5");
 
