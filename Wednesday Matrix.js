@@ -1,5 +1,5 @@
 function runWednesdayMatrix() {
-  
+
   runOutputTab();
   volunteerData();
   badgesData();
@@ -29,7 +29,7 @@ let dashboard = spreadsheet.getSheetByName('Dashboard');
 var cell = dashboard.getRange('B5').getValue() || "18794";
 cell = (cell === "" || cell === null || cell === "#N/A") ? 18794 : cell;
 
-  var results = stmt.executeQuery('select db.`admin-first-timer-indoor` AS New, "Arrived", "BaseC", "Paired", db.`first_name` as "Name", db.`last_name` as "Surname", db.`skills-belaying` as `Belaying Skills`, pd.cc_volunteer AS "Volunteer", db.`admin-wednesday-requests-notes` as `Requests and notes`, db.scores_attendance_reliability_score_cached "Reliability%", `pd`.`order_id` as `Order ID`, `pd`.`user_id` as `Clan ID` from wp_member_db db JOIN wp_order_product_customer_lookup pd on pd.user_id = db.id where `product_id`=' + cell + ' AND `cc_location`="' + cc_location + '" AND status in ("wc-processing", "wc-onhold", "wc-on-hold") order by db.`first_name` ASC');
+  var results = stmt.executeQuery('select db.`admin-first-timer-indoor` AS New, "Arrived", "BaseC", "Paired", db.`first_name` as "Name", db.`last_name` as "Surname", db.`skills-belaying` as `Belaying Skills`, pd.cc_volunteer AS "Volunteer", db.`admin-wednesday-requests-notes` as `Requests and notes`, db.scores_attendance_reliability_score_cached "Reliability%", `pd`.`order_id` as `Order ID`, `pd`.`user_id` as `Clan ID` from wp_member_db db JOIN wp_order_product_customer_lookup pd on pd.user_id = db.id where `product_id`=' + cell + ' AND `cc_location`="' + cc_location + '" AND status in ("wc-processing", "wc-onhold", "wc-on-hold") order by `db`.`first_name` ASC');
   //console.log(results);
 
   var spreadsheet = SpreadsheetApp.getActive();
@@ -118,7 +118,7 @@ cell = (cell[0][0] === "" || cell[0][0] === null || cell[0][0] === "#N/A") ? 187
     sheet.getRange(row, 1, 1, 5).setFontWeight("bold");
     //var lastRow = sheet.getLastRow(row+1,1);
 
-    var results = stmt.executeQuery('select `first_name` "First Name",`nickname` "Facebook Name", pd.order_id "Order ID"  from wp_member_db db JOIN wp_order_product_customer_lookup pd on pd.user_id = db.id where product_id=' + cell + ' AND `cc_location`="' + cc_location + '"  AND status in ("wc-processing", "wc-onhold", "wc-on-hold") AND pd.`cc_volunteer` LIKE "%' + querystring + '%" order by `first_name` ASC');
+    var results = stmt.executeQuery('select `db`.`first_name` "First Name",`db`.`nickname` "Facebook Name", pd.order_id "Order ID"  from wp_member_db db JOIN wp_order_product_customer_lookup pd on pd.user_id = db.id where product_id=' + cell + ' AND `cc_location`="' + cc_location + '"  AND status in ("wc-processing", "wc-onhold", "wc-on-hold") AND pd.`cc_volunteer` LIKE "%' + querystring + '%" order by `db`.`first_name` ASC');
 appendToSheet(sheet,results);
 
 
