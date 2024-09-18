@@ -14,7 +14,9 @@ const colors = {
   grey: "#a9a9a9",
   pink: "#ff75d8",
   yellow: "#fad02c",
-  white: "#FFFFFF"
+  white: "#FFFFFF",
+  green: "#5CFF5C",
+  brightYellow: "#FFFF00"
 };
 
 function setupSheet(name) {

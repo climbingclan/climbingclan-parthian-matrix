@@ -55,9 +55,9 @@ function onOpen() {
       .addItem('Refresh Lead Training', 'refreshLeadBelayTraining')
       .addItem('Refresh TR Belay Training', 'refreshTopRopeTraining')
       .addItem('Refresh Event Listings', 'refreshEventListing')
+      .addItem('Refresh Roles', 'refreshRoles')
       .addSeparator()
       .addItem('Refresh Volunteering', 'volunteerData')
-      .addItem('Refresh Roles', 'runRolesTab')
       .addItem('Refresh Badges', 'badgesData')
       .addToUi();   
 

@@ -13,13 +13,13 @@ function readStats(stmt) {
       GROUP BY \`skills-belaying\`
     `,
     formatting: [
-      { type: 'colorLessThanOrEqual', column: "How many this week", value: "5", color: "#fad02c" },
-      { type: 'colorLessThanOrEqual', column: "How many this week", value: "2", color: "#ffd898" },
-      { type: 'colorLessThanOrEqual', column: "How many this week", value: "0", color: "#ff75d8" },
-      { type: 'color', column: "Belaying Skills", search: "learner-lead-belayer", color: "#FFFF00" },
-      { type: 'color', column: "Belaying Skills", search: "lead-belayer", color: "#5CFF5C" },
-      { type: 'color', column: "Belaying Skills", search: "top", color: "#ADD8E6" },
-      { type: 'color', column: "Belaying Skills", search: "No-belaying", color: "#ffcccb" },
+      { type: 'colorLessThanOrEqual', column: "How many this week", value: "5", color: colors.yellow },
+      { type: 'colorLessThanOrEqual', column: "How many this week", value: "2", color: colors.lightYellow },
+      { type: 'colorLessThanOrEqual', column: "How many this week", value: "0", color: colors.pink },
+      { type: 'color', column: "Belaying Skills", search: "learner-lead-belayer", color: colors.brightYellow },
+      { type: 'color', column: "Belaying Skills", search: "lead-belayer", color: colors.green },
+      { type: 'color', column: "Belaying Skills", search: "top", color: colors.lightBlue },
+      { type: 'color', column: "Belaying Skills", search: "No-belaying", color: colors.lightRed },
       { type: 'numberFormat', column: "How many this week", format: "0" },
       { type: 'columnWidth', column: "Belaying Skills", width: 150 }
     ]
