@@ -1,5 +1,7 @@
 function readOutput(stmt) {
   console.log("Entering readOutput function");
+  let cell = setupCell("Dashboard", "B5");
+  console.log("Cell value in readOutput:", cell);
   makeReport(stmt, {
     sheetName: "Output",
     query: `
