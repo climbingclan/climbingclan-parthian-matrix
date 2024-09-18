@@ -29,7 +29,7 @@ let dashboard = spreadsheet.getSheetByName('Dashboard');
 var cell = dashboard.getRange('B5').getValue() || "18794";
 cell = (cell === "" || cell === null || cell === "#N/A") ? 18794 : cell;
 
-  var results = stmt.executeQuery('select `admin-first-timer-indoor` AS New,"Arrived","BaseC","Paired", db.`first_name` as "Name", db.`last_name` as "Surname", `skills-belaying` as `Belaying Skills`,pd.cc_volunteer AS "Volunteer",`admin-wednesday-requests-notes` as `Requests and notes`,scores_attendance_reliability_score_cached "Reliability%",  `pd`.`order_id` as `Order ID`, `pd`.`user_id` as `Clan ID`   from wp_member_db db JOIN wp_order_product_customer_lookup pd on pd.user_id = db.id where `product_id`=' + cell + ' AND `cc_location`="' + cc_location + '"  AND status in ("wc-processing", "wc-onhold", "wc-on-hold") order by db.`first_name` ASC');
+  var results = stmt.executeQuery('select db.`admin-first-timer-indoor` AS New, "Arrived", "BaseC", "Paired", db.`first_name` as "Name", db.`last_name` as "Surname", db.`skills-belaying` as `Belaying Skills`, pd.cc_volunteer AS "Volunteer", db.`admin-wednesday-requests-notes` as `Requests and notes`, db.scores_attendance_reliability_score_cached "Reliability%", `pd`.`order_id` as `Order ID`, `pd`.`user_id` as `Clan ID` from wp_member_db db JOIN wp_order_product_customer_lookup pd on pd.user_id = db.id where `product_id`=' + cell + ' AND `cc_location`="' + cc_location + '" AND status in ("wc-processing", "wc-onhold", "wc-on-hold") order by db.`first_name` ASC');
   //console.log(results);
 
   var spreadsheet = SpreadsheetApp.getActive();
