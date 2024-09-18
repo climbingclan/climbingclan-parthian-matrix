@@ -17,7 +17,7 @@ function readOutput(stmt) {
         \`pd\`.\`user_id\` as \`Clan ID\` 
       FROM wp_member_db db 
       JOIN wp_order_product_customer_lookup pd ON pd.user_id = db.id 
-      WHERE \`product_id\`=${cell} 
+      WHERE \`product_id\`="${cell}" 
         AND \`cc_location\`="${cc_location}" 
         AND status IN ("wc-processing", "wc-onhold", "wc-on-hold") 
       ORDER BY \`db\`.\`first_name\` ASC

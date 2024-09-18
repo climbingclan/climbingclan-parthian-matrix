@@ -35,7 +35,7 @@ function setupCell(name, range) {
   var spreadsheet = SpreadsheetApp.getActive();
   let sheet = spreadsheet.getSheetByName(name);
   let cellValue = sheet.getRange(range).getValue();
-
+console.log(cellValue)
   if (isNaN(cellValue) || cellValue === "") {
     // Rerun eventListing
     readEventListing();
