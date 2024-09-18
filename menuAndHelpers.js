@@ -56,9 +56,10 @@ function onOpen() {
       .addItem('Refresh TR Belay Training', 'refreshTopRopeTraining')
       .addItem('Refresh Event Listings', 'refreshEventListing')
       .addItem('Refresh Roles', 'refreshRoles')
+      .addItem('Refresh Volunteer Intent', 'refreshVolunteerIntent')
       .addSeparator()
-      .addItem('Refresh Volunteering', 'volunteerData')
-      .addItem('Refresh Badges', 'badgesData')
+      .addItem('Refresh Volunteering', 'refreshVolunteering')
+      .addItem('Refresh Badges', 'refreshBadges')
       .addToUi();
 
         ui.createMenu('Badges & bands')
@@ -143,14 +144,18 @@ function refreshVolunteerIntent() {
   conn.close();
 }
 
-function readBadgesData() {
+function refreshRoles() {
   var conn = Jdbc.getConnection(url, username, password);
   var stmt = conn.createStatement();
-
-  readBadgesNeeded(stmt);
-  readBandsNeeded(stmt);
-  readBadgesGiven(stmt);
-
+  readRoles(stmt);
   stmt.close();
   conn.close();
+}
+
+function refreshVolunteering() {
+  readVolunteerData();
+}
+
+function refreshBadges() {
+  readBadgesData();
 }
