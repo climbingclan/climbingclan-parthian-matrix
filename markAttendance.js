@@ -103,12 +103,12 @@ markAttendance(attendancetype, attendanceshow, orderstatus, metakey, metavalue)
 
 function markAttendance(attendancetype, attendanceshow, orderstatus, metakey, metavalue ) {
 
- var spreadsheet = SpreadsheetApp.getActive();
- var sheet = spreadsheet.getSheetByName('Output');
+ let spreadsheet = SpreadsheetApp.getActive();
+ let sheet = spreadsheet.getSheetByName('Output');
  console.log(sheet.getName())
-  var active_range = sheet.getActiveRange();
-  var currentRow = active_range.getRowIndex();
-  //var currentRow = "14";
+  let active_range = sheet.getActiveRange();
+  let currentRow = active_range.getRowIndex();
+  //let currentRow = "14";
   console.log(currentRow);
 
 
@@ -116,8 +116,8 @@ function markAttendance(attendancetype, attendanceshow, orderstatus, metakey, me
     if(currentRow >=200){Browser.msgBox('Select an actual signup', Browser.Buttons.OK); return;}
 
 
-  var order_id = sheet.getRange(currentRow, 11,1,1).getValue();  /// get submission ID 1 BV ( was 67)
-  var first_name = sheet.getRange(currentRow, 5,1,1).getValue();  /// get submission ID 1 BV ( was 67)
+  let order_id = sheet.getRange(currentRow, 11,1,1).getValue();  /// get submission ID 1 BV ( was 67)
+  let first_name = sheet.getRange(currentRow, 5,1,1).getValue();  /// get submission ID 1 BV ( was 67)
 
   console.log(order_id);
 
@@ -130,9 +130,9 @@ if(order_id === ""){Browser.msgBox('No Order ID Found', Browser.Buttons.OK); ret
 
 
 
-var cc_attendance_setter =  Session.getActiveUser().getEmail();
+let cc_attendance_setter =  Session.getActiveUser().getEmail();
 
-var data = {"meta_data": [
+let data = {"meta_data": [
     {"key": metakey,
     "value": metavalue},
     {"key": "cc_attendance_set_by",
@@ -142,24 +142,24 @@ var data = {"meta_data": [
 };
 console.log(orderstatus);
 
-  var encodedAuthInformation = Utilities.base64Encode(apiusername+ ":" + apipassword);
-  var headers = {"Authorization" : "Basic " + encodedAuthInformation};
-  var options = {
+  let encodedAuthInformation = Utilities.base64Encode(apiusername+ ":" + apipassword);
+  let headers = {"Authorization" : "Basic " + encodedAuthInformation};
+  let options = {
   'method' : 'post',
   'contentType': 'application/json',
     'headers': headers,  // Convert the JavaScript object to a JSON string.
   'payload' : JSON.stringify(data)
 };
-url="https://www."+ apidomain + "/wp-json/wc/v3/orders/" + order_id
+let url="https://www."+ apidomain + "/wp-json/wc/v3/orders/" + order_id
 
-var response = UrlFetchApp.fetch(url, options);
+let response = UrlFetchApp.fetch(url, options);
   console.log(response);
 
 
 //remove old data
 
 
-var blankArray =[[attendanceshow,order_id,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,]];  /// set a blank variable to delete row (45 values)
+let blankArray =[[attendanceshow,order_id,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,]];  /// set a blank variable to delete row (45 values)
 sheet.getRange(currentRow, 6,1,45).setValues(blankArray);   // paste the blank variables into the cells to delete contents
 }
 
