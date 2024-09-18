@@ -12,9 +12,10 @@ function readData() {
     readRoles,
     readVolunteerIntent,
     readBadgesNeeded,
-  readBandsNeeded,
-  readBadgesGiven,
-    // volunteerData is not updated as per your request
+    readBandsNeeded,
+    readBadgesGiven,
+    readVolunteers,
+    readNonVolunteers,
   ];
 
   reports.forEach(report => report(stmt));
