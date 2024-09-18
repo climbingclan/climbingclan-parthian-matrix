@@ -32,10 +32,13 @@ function setupSheet(name) {
 }
 
 function setupCell(name, range) {
+  console.log("Entering setupCell function");
   var spreadsheet = SpreadsheetApp.getActive();
   let sheet = spreadsheet.getSheetByName(name);
+  console.log("Sheet name:", name);
+  console.log("Range:", range);
   let cellValue = sheet.getRange(range).getValue();
-console.log(cellValue)
+  console.log("Cell value:", cellValue);
   if (isNaN(cellValue) || cellValue === "") {
     // Rerun eventListing
     readEventListing();
@@ -138,9 +141,10 @@ function setNumberFormat(sheet, columnHeader, format) {
 
 function makeReport(stmt, reportConfig) {
   let cell = setupCell("Dashboard", "B5");
+  console.log("Cell value in makeReport:", cell);
   let sheet = setupSheet(reportConfig.sheetName);
 
-  var results = stmt.executeQuery(reportConfig.query.replace('${cell}', cell));
+  var results = stmt.executeQuery(reportConfig.query.replace(/\${cell}/g, cell));
 
   appendToSheet(sheet, results);
 
