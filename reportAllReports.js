@@ -6,13 +6,13 @@ function readData() {
     readOutput,
     readVolunteers,
     readLeadBelayTraining,
-    readTopRopeTraining,
     readEventListing,
+    readBadgesNeeded,
+    readBandsNeeded,
+    readTopRopeTraining,
     readStats,
     readRoles,
     readVolunteerIntent,
-    readBadgesNeeded,
-    readBandsNeeded,
   ];
 
   reports.forEach(report => report(stmt));
