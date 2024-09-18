@@ -8,7 +8,8 @@ function readData() {
     readLeadBelayTraining,
     readTopRopeTraining,
     readEventListing,
-    readRoles
+    readRoles,
+    readVolunteerIntent
     // volunteerData is not updated as per your request
   ];
 

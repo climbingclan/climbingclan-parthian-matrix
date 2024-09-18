@@ -205,3 +205,11 @@ function refreshEventListing() {
   stmt.close();
   conn.close();
 }
+
+function refreshVolunteerIntent() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+  readVolunteerIntent(stmt);
+  stmt.close();
+  conn.close();
+}
