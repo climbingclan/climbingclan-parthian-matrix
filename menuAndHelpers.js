@@ -181,3 +181,19 @@ function readBadgesData() {
   stmt.close();
   conn.close();
 }
+
+function refreshEventListings() {
+  var conn = Jdbc.getConnection(url, username, password);
+  var stmt = conn.createStatement();
+
+  readEventListing(stmt);
+
+  stmt.close();
+  conn.close();
+}
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Custom Menu')
+    .addItem('Refresh Event Listings', 'refreshEventListings')
+    .addToUi();
+}
