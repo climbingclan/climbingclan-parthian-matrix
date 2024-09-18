@@ -8,28 +8,7 @@ const cc_location = "Parthian Climbing Manchester";
 const apidomain="climbingclan.com";
 const apiusername="ck_3f8cd172e7aed36533d434e04e8c0b2affe19075";
 const apipassword="cs_817f3cd22ae28bc33fa716a6fdfd707188c0409b";
-
-function setupCell(name, range) {
-  var spreadsheet = SpreadsheetApp.getActive();
-  let sheet = spreadsheet.getSheetByName(name);
-  let cellValue = sheet.getRange(range).getValue();
-  if (isNaN(cellValue) || cellValue === "") {
-    // Rerun eventListing
-    readEventListing();
-
-    // Try again
-    cellValue = sheet.getRange(range).getValue();
-
-    if (isNaN(cellValue) || cellValue === "") {
-      throw new Error("Invalid event selected - please try again");
-    }
-  }
-
-  return cellValue;
-}
-
 const cell = setupCell("Dashboard", "B5");
-
 
 const colors = {
   lightRed: "#ffcccb",
@@ -56,17 +35,6 @@ function setupCell(name, range) {
   var spreadsheet = SpreadsheetApp.getActive();
   let sheet = spreadsheet.getSheetByName(name);
   let cellValue = sheet.getRange(range).getValue();
-  if (isNaN(cellValue) || cellValue === "") {
-    // Rerun eventListing
-    readEventListing();
-
-    // Try again
-    cellValue = sheet.getRange(range).getValue();
-
-    if (isNaN(cellValue) || cellValue === "") {
-      throw new Error("Invalid event selected - please try again");
-    }
-  }
 
   return cellValue;
 }
@@ -158,7 +126,9 @@ function setNumberFormat(sheet, columnHeader, format) {
 
 function makeReport(stmt, reportConfig) {
   let sheet = setupSheet(reportConfig.sheetName);
-
+    if (isNaN(cell) || cell === "") {
+      throw new Error("Invalid event selected - please try again");
+    }
   var results = stmt.executeQuery(reportConfig.query.replace(/\${cell}/g, cell));
 
   appendToSheet(sheet, results);

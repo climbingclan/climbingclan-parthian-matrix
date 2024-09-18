@@ -5,7 +5,6 @@ function readData() {
   const reports = [
     readOutput,
     readVolunteers,
-    readNonVolunteers,
     readLeadBelayTraining,
     readTopRopeTraining,
     readEventListing,
@@ -14,7 +13,6 @@ function readData() {
     readVolunteerIntent,
     readBadgesNeeded,
     readBandsNeeded,
-    readBadgesGiven,
   ];
 
   reports.forEach(report => report(stmt));

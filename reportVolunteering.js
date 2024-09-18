@@ -72,75 +72,12 @@ function readVolunteers(stmt) {
   });
 }
 
-function readNonVolunteers(stmt) {
-  makeReport(stmt, {
-    sheetName: "Volunteering",
-    title: "People who haven't volunteered or been assigned",
-    query: `
-      SELECT 
-        db.\`first_name\` AS "First Name",
-        db.\`nickname\` AS "Facebook Name",
-        pd.cc_volunteer AS "Selected Roles",
-        volunteer_indoor_preevent_facebook_promo AS "FB promo",
-        volunteer_indoor_event_reporter AS "Rprtr",
-        volunteer_indoor_check_in AS "Check-in",
-        volunteer_indoor_welcome_liaison AS "WelcLn",
-        volunteer_indoor_rounding_up AS "Rnd Up",
-        volunteer_indoor_before_cake_tidying AS "PreCake",
-        volunteer_indoor_after_cake_tidying AS "PostCake",
-        volunteer_indoor_give_announcements AS "Anncments",
-        volunteer_indoor_floorwalker AS "Flwlkr",
-        volunteer_indoor_pairing AS "Pair",
-        volunteer_indoor_event_director AS "Event Dir",
-        scores_volunteer_score_cached AS "Receptiveness",
-        stats_attendance_indoor_wednesday_attended_cached AS "Attended",
-        \`admin-wednesday-requests-notes\` AS \`Requests and notes\`,
-        pd.order_id AS "Order ID",
-        pd.user_id AS "User ID"
-      FROM wp_member_db db
-      JOIN wp_order_product_customer_lookup pd ON pd.user_id = db.id
-      JOIN wp_member_db_volunteering vl ON pd.user_id = vl.id
-      WHERE product_id = ${cell}
-        AND \`cc_location\` = "${cc_location}"
-        AND status IN ("wc-processing", "wc-onhold", "wc-on-hold")
-        AND \`admin-first-timer-question\` = "no"
-        AND (\`admin-can-you-help\` = "" AND pd.cc_volunteer = "none")
-        AND scores_volunteer_score_cached <> ""
-        AND CAST(stats_attendance_indoor_wednesday_attended_cached AS UNSIGNED INTEGER) >= 2
-      ORDER BY 
-        pd.cc_volunteer ASC,
-        CAST(db.scores_volunteer_score_cached AS UNSIGNED INTEGER) ASC,
-        CAST(db.stats_attendance_indoor_wednesday_attended_cached AS UNSIGNED INTEGER) DESC
-    `,
-    formatting: [
-      { type: 'numberFormat', column: "Receptiveness", format: "0" },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "10", color: colors.pink },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "20", color: colors.lightYellow },
-      { type: 'colorLessThanOrEqual', column: "Receptiveness", value: "30", color: colors.yellow },
-      { type: 'color', column: "Selected Roles", search: "none", color: colors.lightGreen },
-      { type: 'text', column: "FB promo", search: "No", color: colors.grey },
-      { type: 'text', column: "Rprtr", search: "No", color: colors.grey },
-      { type: 'text', column: "Check-in", search: "No", color: colors.grey },
-      { type: 'text', column: "WelcLn", search: "No", color: colors.grey },
-      { type: 'text', column: "Rnd Up", search: "No", color: colors.grey },
-      { type: 'text', column: "PreCake", search: "No", color: colors.grey },
-      { type: 'text', column: "PostCake", search: "No", color: colors.grey },
-      { type: 'text', column: "Anncments", search: "No", color: colors.grey },
-      { type: 'text', column: "Flwlkr", search: "No", color: colors.grey },
-      { type: 'text', column: "Pair", search: "No", color: colors.grey },
-      { type: 'text', column: "Event Dir", search: "No", color: colors.grey },
-      { type: 'columnWidth', column: "Requests and notes", width: 200 },
-      { type: 'wrap', column: "Requests and notes" }
-    ]
-  });
-}
 
 function volunteerData() {
   var conn = Jdbc.getConnection(url, username, password);
   var stmt = conn.createStatement();
 
   readVolunteers(stmt);
-  readNonVolunteers(stmt);
 
   stmt.close();
   conn.close();
