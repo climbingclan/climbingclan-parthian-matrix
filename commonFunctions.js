@@ -9,6 +9,7 @@ const url = `jdbc:mysql://${server}:${port}/${dbName}`;
 const apidomain = scriptProperties.getProperty('cred_apidomain');
 const apiusername = scriptProperties.getProperty('cred_apiusername');
 const apipassword = scriptProperties.getProperty('cred_apipassword');
+
 const cell = setupCell("Dashboard", "B5");
 const cc_location = "Parthian Climbing Manchester";
 
